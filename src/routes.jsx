@@ -3,6 +3,7 @@ import RegisterForm from "./components/RegisterForm/RegisterForm";
 import App from "./App";
 import Wishlist from "./components/Wishlist/Wishlist";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AddCollection from "./components/AddCollection/AddCollection";
 
 const routes = [
   {
@@ -26,6 +27,14 @@ const routes = [
     element: (
       <ProtectedRoute>
         <Wishlist />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/add-collection",
+    element: (
+      <ProtectedRoute>
+        <AddCollection />
       </ProtectedRoute>
     ),
   },
