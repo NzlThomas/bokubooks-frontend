@@ -4,6 +4,7 @@ import App from "./App";
 import Wishlist from "./components/Wishlist/Wishlist";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AddCollection from "./components/AddCollection/AddCollection";
+import Collection from "./components/Collection/Collection";
 
 const routes = [
   {
@@ -27,6 +28,14 @@ const routes = [
     element: (
       <ProtectedRoute>
         <Wishlist />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/collection",
+    element: (
+      <ProtectedRoute>
+        <Collection />
       </ProtectedRoute>
     ),
   },
