@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import WishlistAddModal from "../WishlistAddModal/WishlistAddModal";
-import WishlistDeleteModal from "../WishlistDeleteModal/WishlistDeleteModal";
+import DeleteModal from "../DeleteModal/DeleteModal";
 import api from "../../api/api";
 
 function Wishlist() {
@@ -77,12 +77,13 @@ function Wishlist() {
       )}
 
       {deleteModal && selectedBook && (
-        <WishlistDeleteModal
+        <DeleteModal
           title={selectedBook.title}
           onConfirm={confirmDelete}
           onCancel={() => {
             (setDeleteModal(false), setSelectedBook(null));
           }}
+          message="votre liste de souhaits "
         />
       )}
 
