@@ -67,7 +67,6 @@ function LoginForm() {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            placeholder="Nom d'utilisateur"
             required
             autoComplete="off"
             className={styles.usernameInput}
@@ -82,7 +81,6 @@ function LoginForm() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              placeholder="Votre de passe"
               required
               autoComplete="off"
               className={styles.passwordInput}

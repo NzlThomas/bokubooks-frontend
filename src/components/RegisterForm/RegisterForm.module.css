@@ -80,3 +80,18 @@
 .registerContainer a:hover {
   text-decoration: none;
 }
+
+@media (min-width: 1200px) {
+  .registerContainer {
+    width: 425px;
+    height: 550px;
+  }
+
+  .formContainer input {
+    width: 15rem;
+  }
+
+  .registerBtn {
+    padding: 0.8rem 1.5rem;
+  }
+}

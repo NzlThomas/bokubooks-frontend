@@ -74,7 +74,6 @@ function RegisterForm() {
             autoComplete="off"
             minLength={3}
             maxLength={20}
-            placeholder="Nom d'utilisateur"
           />
           <label htmlFor="password">Mot de passe:</label>
           <input
@@ -86,7 +85,6 @@ function RegisterForm() {
               setPassword(e.target.value);
             }}
             autoComplete="off"
-            placeholder="Mot de passe"
             required
           />
           <label htmlFor="confirmPassword">Confirmer le mot de passe:</label>
@@ -99,7 +97,6 @@ function RegisterForm() {
               setConfirmPassword(e.target.value);
             }}
             autoComplete="off"
-            placeholder="Confirmer mdp"
             required
           />
           <button type="submit" className={styles.registerBtn}>
