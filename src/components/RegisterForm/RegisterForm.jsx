@@ -1,47 +1,69 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
+import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import styles from "./RegisterForm.module.css";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
 
   const navigate = useNavigate();
-
-  function handlePasswordError() {
-    setPasswordError(true);
-    setPassword("");
-    setConfirmPassword("");
-  }
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      handlePasswordError();
+      setPassword("");
+      setConfirmPassword("");
+      toast.error("Les mots de passe ne correspondent pas.");
       return;
     }
     try {
       await api.post("/register", {
         username,
         password,
+        confirmPassword,
       });
       setUsername("");
       setPassword("");
       setConfirmPassword("");
       navigate("/login");
     } catch (error) {
-      console.error(error);
+      const { error: code } = error.response.data;
+
+      switch (code) {
+        case "MISSING_FIELDS":
+          toast.error("Veuillez remplir les deux champs.");
+          break;
+        case "PASSWORDS_DONT_MATCH":
+          setPassword("");
+          setConfirmPassword("");
+          toast.error("Les mots de passe ne correspondent pas.");
+          break;
+        case "USERNAME_LENGTH":
+          toast.error(
+            "Votre nom d'utilisateur doit être entre 3 et 20 caractères.",
+          );
+          break;
+        case "PASSWORD_TOO_SHORT":
+          toast.error("Le mot de passe doit contenir au moins 8 caractères.");
+          break;
+        case "USER_ALREADY_EXISTS":
+          toast.error("Ce nom d'utilisateur est déjà pris.");
+          break;
+        default:
+          toast.error("Une erreur est survenue.");
+      }
     }
   };
 
   return (
-    <div>
-      <div>
+    <div className={styles.pageContainer}>
+      <div className={styles.registerContainer}>
         <h1>Créer un compte:</h1>
-        <form onSubmit={handleRegisterSubmit}>
+        <form onSubmit={handleRegisterSubmit} className={styles.formContainer}>
           <label htmlFor="username">Nom d'utilisateur</label>
           <input
             type="text"
@@ -62,10 +84,10 @@ function RegisterForm() {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setPasswordError(false);
             }}
             autoComplete="off"
             placeholder="Mot de passe"
+            required
           />
           <label htmlFor="confirmPassword">Confirmer le mot de passe:</label>
           <input
@@ -75,18 +97,24 @@ function RegisterForm() {
             value={confirmPassword}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
-              setPasswordError(false);
             }}
             autoComplete="off"
-            placeholder="Confirmer le mot de passe"
+            placeholder="Confirmer mdp"
+            required
           />
-          {passwordError && (
-            <p>Erreur: Les mots de passe ne correspondent pas.</p>
-          )}
-          <button type="submit">Créer un compte</button>
+          <button type="submit" className={styles.registerBtn}>
+            Créer un compte
+          </button>
         </form>
         <Link to="/login">Se connecter</Link>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

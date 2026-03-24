@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/roboto-variable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/montserrat-variable.woff2") format("woff2-variations");
+}
+
+:root {
+  --background: #000000;
+  --nav-background: #292929;
+  --secondary: #9839e6;
+  --non-focused: #858585;
+  --read: #3ec23a;
+  --reading: #006af5;
+  --not-read: #e02c2c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background);
+}
+
+input {
+  outline: none;
+}

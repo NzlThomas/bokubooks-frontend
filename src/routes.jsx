@@ -1,11 +1,17 @@
-import LoginForm from "./components/LoginForm/LoginForm";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import App from "./App";
-import Wishlist from "./components/Wishlist/Wishlist";
+import { lazy } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import AddCollection from "./components/AddCollection/AddCollection";
-import Collection from "./components/Collection/Collection";
-import Dashboard from "./components/Dashboard/Dashboard";
+import NavLayout from "./components/Outlet/Outlet";
+
+const LoginForm = lazy(() => import("./components/LoginForm/LoginForm"));
+const RegisterForm = lazy(
+  () => import("./components/RegisterForm/RegisterForm"),
+);
+const Wishlist = lazy(() => import("./components/Wishlist/Wishlist"));
+const AddCollection = lazy(
+  () => import("./components/AddCollection/AddCollection"),
+);
+const Collection = lazy(() => import("./components/Collection/Collection"));
+const Dashboard = lazy(() => import("./components/Dashboard/Dashboard"));
 
 const routes = [
   {
@@ -20,41 +26,27 @@ const routes = [
     path: "/",
     element: (
       <ProtectedRoute>
-        <App />
+        <NavLayout />
       </ProtectedRoute>
     ),
-  },
-  {
-    path: "/wishlist",
-    element: (
-      <ProtectedRoute>
-        <Wishlist />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/collection",
-    element: (
-      <ProtectedRoute>
-        <Collection />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/add-collection",
-    element: (
-      <ProtectedRoute>
-        <AddCollection />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/dashboard",
-    element: (
-      <ProtectedRoute>
-        <Dashboard />
-      </ProtectedRoute>
-    ),
+    children: [
+      {
+        path: "/wishlist",
+        element: <Wishlist />,
+      },
+      {
+        index: true,
+        element: <Collection />,
+      },
+      {
+        path: "/add-collection",
+        element: <AddCollection />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ],
   },
 ];
 

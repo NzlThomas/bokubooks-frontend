@@ -1,0 +1,144 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.updateContainer {
+  background-color: var(--nav-background);
+  border: 2px solid var(--secondary);
+  padding: 1rem 1rem;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.updateContainer input {
+  color: white;
+  background-color: var(--nav-background);
+  text-align: center;
+  font-size: 18px;
+  padding: 0.5rem 0.75rem;
+}
+
+.updateContainer input:focus {
+  border-color: white;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.titleContainer p {
+  font-weight: 550;
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.editTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.titleInput {
+  flex: 1;
+  text-align: left;
+  font-size: 20px;
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+}
+
+.ownedContainer,
+.readContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.ownedTitle,
+.readTitle {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ownedNumberInput {
+  display: flex;
+  align-items: center;
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--nav-background);
+}
+
+.ownedNumberInput input {
+  width: 4rem;
+  border: none;
+}
+
+.ownedNumberInput:focus-within {
+  border-color: white;
+}
+
+.ownedNumberInput button {
+  cursor: pointer;
+  background-color: var(--nav-background);
+  color: white;
+  font-size: 25px;
+  padding: 0.5rem 0.8rem;
+  border: none;
+}
+
+.saveButton {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  font-size: 18px;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  width: 200px;
+  margin-top: 1rem;
+  align-self: center;
+}
+
+.saveButton:hover {
+  background-color: white;
+  color: var(--secondary);
+}

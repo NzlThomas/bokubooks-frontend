@@ -1,0 +1,64 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.deleteContainer {
+  background-color: var(--nav-background);
+  border: 2px solid var(--secondary);
+  padding: 1rem 1rem;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textContainer span {
+  overflow-wrap: break-word;
+}
+
+.confirmButton {
+  background-color: var(--not-read);
+  color: white;
+  border: 2px solid var(--not-read);
+  font-size: 18px;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+
+.cancelButton {
+  background-color: white;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  font-size: 18px;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.confirmButton:hover {
+  background-color: white;
+  color: var(--not-read);
+}

@@ -1,0 +1,127 @@
+.container {
+  background-color: var(--background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: var(--secondary);
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.title span {
+  display: block;
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.form input {
+  color: white;
+  background-color: var(--nav-background);
+  text-align: center;
+  font-size: 20px;
+  padding: 0.5rem 0.75rem;
+}
+
+.titleContainer input {
+  width: 13rem;
+  text-align: left;
+  font-size: 20px;
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+}
+
+.titleContainer input:focus {
+  border-color: white;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.volumesContainer {
+  display: flex;
+  gap: 3rem;
+}
+
+.ownedNumberInput {
+  display: flex;
+  align-items: center;
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--nav-background);
+}
+
+.ownedNumberInput:focus-within {
+  border-color: white;
+}
+
+.volumesContainer input {
+  width: 5rem;
+  border: none;
+}
+
+.volumesContainer button {
+  cursor: pointer;
+  background-color: var(--nav-background);
+  color: white;
+  font-size: 25px;
+  padding: 0.5rem 0.8rem;
+  border: none;
+}
+
+.ownedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.readContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  font-size: 1.3rem;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.button:hover {
+  background-color: rgb(252, 252, 252);
+  color: var(--secondary);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
