@@ -102,3 +102,19 @@
 .loginContainer a:hover {
   text-decoration: none;
 }
+
+@media (min-width: 1200px) {
+  .loginContainer {
+    width: 425px;
+    height: 550px;
+  }
+
+  .usernameInput,
+  .inputIconContainer {
+    width: 15rem;
+  }
+
+  .loginBtn {
+    padding: 0.8rem 1.5rem;
+  }
+}
