@@ -54,7 +54,7 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
             }}
             id="search"
           />
-          <FaMagnifyingGlass size={25} />
+          <FaMagnifyingGlass className={styles.glass} />
         </span>
 
         <div className={styles.filtersContainer}>
@@ -118,16 +118,25 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
                 <div className={styles.cardInfos}>
                   <p>{book.title}</p>
                   <div className={styles.bottomLine}>
-                    <span className={styles.readCount}>
-                      <FaEye size={20} /> {book.totalRead}/{book.totalVolumes}
+                    <span className={styles.readCount} title="Volumes lus">
+                      <FaEye className={styles.otherIcons} /> {book.totalRead}/
+                      {book.totalVolumes}
                     </span>
 
                     <div className={styles.actions}>
-                      <button onClick={() => onUpdate(book)} type="button">
-                        <MdEdit size={25} />
+                      <button
+                        onClick={() => onUpdate(book)}
+                        type="button"
+                        title="Modifier"
+                      >
+                        <MdEdit className={styles.editIcon} />
                       </button>
-                      <button onClick={() => onDelete(book)} type="button">
-                        <FaTrashCan size={20} />
+                      <button
+                        onClick={() => onDelete(book)}
+                        type="button"
+                        title="Supprimer"
+                      >
+                        <FaTrashCan className={styles.otherIcons} />
                       </button>
                     </div>
                   </div>
