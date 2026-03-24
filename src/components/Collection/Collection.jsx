@@ -3,19 +3,22 @@ import api from "../../api/api";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import CollectionMap from "../CollectionMap/CollectionMap";
+import { ToastContainer, toast } from "react-toastify";
 
 function Collection() {
   const [collection, setCollection] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const collection = async () => {
       try {
+        setIsLoading(true);
         const res = await api.get("/collection");
         setCollection(res.data.collection);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -41,6 +44,9 @@ function Collection() {
       setCollection((prevCollection) =>
         prevCollection.filter((book) => book.id !== selectedBook.id),
       );
+      toast.success(
+        `${selectedBook.title} a bien été supprimé de votre liste de souhaits!`,
+      );
       setDeleteModal(false);
       setSelectedBook(null);
     } catch (error) {
@@ -51,18 +57,20 @@ function Collection() {
   async function confirmUpdate(id, title, totalRead, totalVolumes) {
     try {
       if (title.trim().length === 0) {
-        setError("Erreur: Titre obligatoire");
+        toast.error("Titre obligatoire");
         return;
       }
 
       if (totalVolumes < 1) {
-        setError("Erreur: Vous devez posséder au minimum 1 volume.");
+        toast.error(
+          "Vous devez posséder au minimum 1 volume. Appuyez sur la poubelle si vous souhaitez supprimer cette entrée.",
+        );
         return;
       }
 
       if (totalRead > totalVolumes) {
-        setError(
-          "Erreur: Les volumes lus ne peuvent pas dépasser les volumes possédés.",
+        toast.error(
+          "Les volumes lus ne peuvent pas excéder les volumes possédés.",
         );
         return;
       }
@@ -78,6 +86,7 @@ function Collection() {
       );
       setDeleteModal(false);
       setSelectedBook(null);
+      toast.success(`${title} a bien été mis à jour!`);
     } catch (error) {
       console.error(error);
     }
@@ -88,6 +97,7 @@ function Collection() {
         collection={collection}
         onDelete={handleDelete}
         onUpdate={handleUpdate}
+        isLoading={isLoading}
       />
 
       {deleteModal && selectedBook && (
@@ -110,8 +120,13 @@ function Collection() {
           }}
         />
       )}
-
-      {error && <p>{error}</p>}
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

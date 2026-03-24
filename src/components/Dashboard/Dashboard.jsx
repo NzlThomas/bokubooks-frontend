@@ -1,39 +1,34 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 import api from "../../api/api";
+import styles from "./Dashboard.module.css";
 
 function Dashboard() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, logout } = useContext(AuthContext);
   const [newUsername, setNewUsername] = useState("");
-  const [usernameMessage, setUsernameMessage] = useState("");
 
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [passwordMessage, setPasswordMessage] = useState("");
 
   async function handleChangeUsername(e) {
     e.preventDefault();
 
     try {
       if (newUsername.trim() === "") {
-        setUsernameMessage(
-          "Veuillez renseigner votre nouveau nom d'utilisateur.",
-        );
+        toast.error("Veuillez renseigner votre nouveau nom d'utilisateur.");
         return;
       }
 
       if (newUsername.length < 3 || newUsername.length > 20) {
-        setUsernameMessage(
+        toast.error(
           "Votre nom ne peut pas être inférieur à 3 ou supérieur à 20 caractères.",
         );
-        setNewUsername("");
         return;
       }
 
       if (user.username === newUsername) {
-        setUsernameMessage(
-          "Le nom d'utilisateur doit être différent du précédent.",
-        );
+        toast.error("Le nom d'utilisateur doit être différent du précédent.");
         return;
       }
 
@@ -41,13 +36,13 @@ function Dashboard() {
         newUsername,
       });
 
-      setUsernameMessage("Votre nom d'utilisateur a bien été mis à jour.");
+      toast.success("Votre nom d'utilisateur a bien été mis à jour.");
 
       setUser((prev) => ({ ...prev, username: newUsername }));
       setNewUsername("");
     } catch (error) {
       if (error.response?.status === 409) {
-        setUsernameMessage("Ce nom d'utilisateur est déjà utilisé.");
+        toast.error("Ce nom d'utilisateur est déjà utilisé.");
       } else {
         console.error(error);
       }
@@ -59,19 +54,24 @@ function Dashboard() {
 
     try {
       if (currentPassword.trim() === "" || newPassword.trim() === "") {
-        setPasswordMessage("Veuillez remplir les deux champs.");
-        return;
-      }
-
-      if (!currentPassword || !newPassword) {
-        setPasswordMessage("Veuillez remplir les deux champs.");
+        toast.error("Veuillez remplir les deux champs.", {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          theme: "colored",
+        });
         return;
       }
 
       if (newPassword.length < 8) {
-        setPasswordMessage(
-          "Le mot de passe doit contenir au moins 8 caractères.",
-        );
+        toast.error("Votre mot de passe doit contenir au moins 8 caractères.", {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          theme: "colored",
+        });
         return;
       }
 
@@ -79,7 +79,14 @@ function Dashboard() {
         currentPassword,
         newPassword,
       });
-      setPasswordMessage("Votre mot de passe a bien été mis à jour.");
+
+      toast.success("Votre mot de passe a bien été mis à jour.", {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "colored",
+      });
       setCurrentPassword("");
       setNewPassword("");
     } catch (error) {
@@ -87,65 +94,86 @@ function Dashboard() {
 
       switch (code) {
         case "MISSING_FIELDS":
-          setPasswordMessage("Veuillez remplir tous les champs.");
+          toast.error("Veuillez remplir les deux champs.");
           break;
         case "PASSWORD_TOO_SHORT":
-          setPasswordMessage(
-            "Le mot de passe doit contenir au moins 8 caractères.",
-          );
+          toast.error("Le mot de passe doit contenir au moins 8 caractères.");
           break;
         case "INVALID_CURRENT_PASSWORD":
-          setPasswordMessage("Mot de passe actuel incorrect.");
+          toast.error("Mot de passe actuel incorrect.");
+          setCurrentPassword("");
           break;
         case "SAME_PASSWORDS":
-          setPasswordMessage("Le nouveau mot de passe doit être différent.");
+          toast.error("Le nouveau mot de passe doit être différent.");
+          setNewPassword("");
           break;
         case "USER_NOT_FOUND":
-          setPasswordMessage("Utilisateur introuvable.");
+          toast.error("Utilisateur introuvable.");
           break;
         default:
-          setPasswordMessage("Une erreur est survenue.");
+          toast.error("Une erreur est survenue.");
       }
     }
   }
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.usernameContainer}>
         <form onSubmit={handleChangeUsername}>
-          <label>Changer votre nom d'utilisateur</label>
-          <input
-            placeholder={user.username}
-            onChange={(e) => setNewUsername(e.target.value)}
-            value={newUsername}
-            min={3}
-            max={20}
-          />
-          <button type="submit">Changer</button>
+          <label htmlFor="username">Changer votre nom d'utilisateur</label>
+          <div>
+            <input
+              placeholder={user.username}
+              onChange={(e) => setNewUsername(e.target.value)}
+              value={newUsername}
+              min={3}
+              max={20}
+              name="username"
+              id="username"
+              autoComplete="off"
+            />
+            <button type="submit" className={styles.formButton}>
+              Changer
+            </button>
+          </div>
         </form>
-        {usernameMessage && <p>{usernameMessage}</p>}
       </div>
 
-      <div>
+      <div className={styles.passwordContainer}>
         <p>Changer de mot de passe</p>
         <form onSubmit={handleChangePassword}>
-          <label>Nouveau mot de passe:</label>
+          <label htmlFor="newPassword">Nouveau mot de passe:</label>
           <input
             onChange={(e) => setNewPassword(e.target.value)}
             type="password"
+            id="newPassword"
+            name="newPassword"
             required
             value={newPassword}
           />
-          <label>Mot de passe actuel:</label>
+          <label htmlFor="currentPassword">Mot de passe actuel:</label>
           <input
             onChange={(e) => setCurrentPassword(e.target.value)}
             type="password"
             required
             value={currentPassword}
+            name="currentPassword"
+            id="currentPassword"
           />
-          <button type="submit">Changer</button>
+          <button type="submit" className={styles.formButton}>
+            Changer
+          </button>
         </form>
-        {passwordMessage && <p>{passwordMessage}</p>}
       </div>
+      <button onClick={logout} className={styles.logoutBtn}>
+        Déconnexion
+      </button>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

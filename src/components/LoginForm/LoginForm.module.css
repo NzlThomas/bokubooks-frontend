@@ -1,0 +1,104 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loginContainer {
+  background-color: var(--nav-background);
+  color: white;
+  border: 2px solid var(--secondary);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 90%;
+  height: 25rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formContainer label {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.formContainer input {
+  color: white;
+  background-color: var(--nav-background);
+  font-size: 17px;
+  text-align: left;
+}
+
+.formContainer input::placeholder {
+  opacity: 0.6;
+  color: white;
+}
+
+.formContainer input:focus {
+  border-color: white;
+}
+
+.usernameInput {
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  width: 12rem;
+}
+
+.passwordInput {
+  border: none;
+  width: 90%;
+}
+
+.inputIconContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--nav-background);
+  border: solid 2px var(--secondary);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  width: 12rem;
+}
+
+.inputIconContainer:focus-within {
+  border-color: white;
+}
+
+.loginBtn {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  font-size: 1.2rem;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.loginBtn:hover {
+  background-color: white;
+  color: var(--secondary);
+}
+
+.loginContainer a {
+  color: white;
+  font-size: 18px;
+}
+
+.loginContainer a:hover {
+  text-decoration: none;
+}

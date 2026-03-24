@@ -2,26 +2,32 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import api from "../../api/api";
+import { ToastContainer, toast } from "react-toastify";
+import styles from "./LoginForm.module.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [passwordType, setPasswordType] = useState("password");
 
   const { login, user } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
-  function errorLogin() {
-    setError(true);
-    setPassword("");
-  }
 
   useEffect(() => {
     if (user) {
       navigate("/");
     }
   }, [user, navigate]);
+
+  function displayPassword() {
+    if (passwordType === "password") {
+      setPasswordType("text");
+    } else {
+      setPasswordType("password");
+    }
+  }
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -35,16 +41,23 @@ function LoginForm() {
       login(res.data.user);
       navigate("/app");
     } catch (error) {
-      console.error("Error:", error);
-      errorLogin();
+      const { error: code } = error.response.data;
+
+      switch (code) {
+        case "AUTHENTICATION_FAILED":
+          toast.error("Nom d'utilisateur ou mot de passe incorrect.");
+          break;
+        default:
+          toast.error("Une erreur est survenue.");
+      }
     }
   };
 
   return (
-    <div>
-      <div>
-        <h1>Se connecter:</h1>
-        <form onSubmit={handleLoginSubmit}>
+    <div className={styles.pageContainer}>
+      <div className={styles.loginContainer}>
+        <h1>Se connecter</h1>
+        <form onSubmit={handleLoginSubmit} className={styles.formContainer}>
           <label htmlFor="username">Nom d'utilisateur:</label>
           <input
             type="text"
@@ -53,34 +66,47 @@ function LoginForm() {
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
-              setError(false);
             }}
             placeholder="Nom d'utilisateur"
             required
             autoComplete="off"
+            className={styles.usernameInput}
           />
           <label htmlFor="password">Mot de passe:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setError(false);
-            }}
-            placeholder="Votre de passe"
-            required
-            autoComplete="off"
-          />
-          {error && (
-            <p>Erreur: nom d'utilisateur et/ou mot de passe incorrect.</p>
-          )}
+          <span className={styles.inputIconContainer}>
+            <input
+              type={passwordType}
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              placeholder="Votre de passe"
+              required
+              autoComplete="off"
+              className={styles.passwordInput}
+            />
+            {passwordType === "password" ? (
+              <FaEye onClick={() => displayPassword()} size={20} />
+            ) : (
+              <FaEyeSlash onClick={() => displayPassword()} size={20} />
+            )}
+          </span>
 
-          <button type="submit">Se connecter</button>
+          <button type="submit" className={styles.loginBtn}>
+            Se connecter
+          </button>
         </form>
         <Link to="/register">Créer un compte</Link>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }
