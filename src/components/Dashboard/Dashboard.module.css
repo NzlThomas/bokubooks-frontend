@@ -113,3 +113,39 @@
   background-color: white;
   color: var(--not-read);
 }
+
+@media (min-width: 1200px) {
+  .usernameContainer {
+    width: 20%;
+  }
+
+  .usernameContainer div {
+    margin-bottom: 0.7rem;
+  }
+
+  .passwordContainer {
+    width: 20%;
+  }
+
+  .passwordContainer form {
+    align-items: center;
+  }
+
+  .passwordContainer input {
+    margin: 0;
+  }
+
+  .passwordContainer button {
+    margin: 0.5rem 0rem;
+  }
+
+  .formButton {
+    font-size: 18px;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .logoutBtn {
+    font-size: 22px;
+    padding: 0.7rem 1.7rem;
+  }
+}

@@ -43,7 +43,6 @@ function WishlistAddModal({ onAdd, onCancel }) {
             name="title"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
-            placeholder="Titre du livre..."
             type="text"
             autoFocus
           />

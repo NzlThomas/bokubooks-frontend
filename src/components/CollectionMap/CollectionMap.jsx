@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./CollectionMap.module.css";
 import LoadingBlocks from "../LoadingBlocks/LoadingBlocks";
-import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaTrashCan, FaDeleteLeft } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
@@ -53,6 +53,12 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
               (setSearch(e.target.value), setVisibleCount(20));
             }}
             id="search"
+            type="text"
+            value={search}
+          />
+          <FaDeleteLeft
+            onClick={() => setSearch("")}
+            className={search ? styles.visible : styles.hidden}
           />
           <FaMagnifyingGlass className={styles.glass} />
         </span>

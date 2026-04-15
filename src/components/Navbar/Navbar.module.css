@@ -27,3 +27,24 @@
   align-items: center;
   gap: 5px;
 }
+
+@media (min-width: 1200px) {
+  .desktopContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .navContainer {
+    height: 80px;
+    width: 40%;
+    padding: 2.5rem 0rem;
+    justify-content: center;
+    gap: 5rem;
+    border-left: 2.5px solid var(--secondary);
+    border-right: 2.5px solid var(--secondary);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .navLink {
+    font-size: 20px;
+  }
+}
