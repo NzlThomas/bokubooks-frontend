@@ -27,7 +27,6 @@
 .updateContainer input {
   color: white;
   background-color: var(--nav-background);
-  text-align: center;
   font-size: 18px;
   padding: 0.5rem 0.75rem;
 }
@@ -57,6 +56,11 @@
   border: none;
   color: white;
   cursor: pointer;
+  transition: color 0.1s ease;
+}
+
+.closeButton:hover {
+  color: var(--secondary);
 }
 
 .editTitleContainer {
@@ -75,7 +79,6 @@
 
 .titleInput {
   flex: 1;
-  text-align: left;
   font-size: 20px;
   border: solid 2px var(--secondary);
   border-radius: 8px;
@@ -87,6 +90,11 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+}
+
+.ownedContainer input,
+.readContainer input {
+  text-align: center;
 }
 
 .ownedTitle,
@@ -141,4 +149,48 @@
 .saveButton:hover {
   background-color: white;
   color: var(--secondary);
+}
+
+@media (min-width: 1200px) {
+  .updateContainer {
+    padding: 1rem 1rem;
+    width: 500px;
+    height: 500px;
+  }
+
+  .titleContainer,
+  .readContainer {
+    margin-bottom: 3rem;
+  }
+
+  .titleContainer p {
+    font-size: 24px;
+  }
+
+  .title,
+  .ownedTitle,
+  .readTitle {
+    font-size: 1.4rem;
+  }
+
+  .editTitleContainer {
+    justify-content: space-between;
+  }
+
+  .titleInput {
+    flex: 0;
+  }
+
+  .editTitleContainer input {
+    font-size: 20px;
+  }
+
+  .saveButton {
+    padding: 0.9rem 2.5rem;
+    font-size: 20px;
+  }
+
+  .ownedNumberInput input {
+    width: 5rem;
+  }
 }

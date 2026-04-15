@@ -30,6 +30,13 @@
   box-sizing: border-box;
 }
 
+body,
+html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+}
+
 h1 {
   font-family: "Montserrat", sans-serif;
 }

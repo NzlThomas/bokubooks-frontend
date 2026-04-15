@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./CollectionMap.module.css";
 import LoadingBlocks from "../LoadingBlocks/LoadingBlocks";
-import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaTrashCan, FaDeleteLeft } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
@@ -53,8 +53,14 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
               (setSearch(e.target.value), setVisibleCount(20));
             }}
             id="search"
+            type="text"
+            value={search}
           />
-          <FaMagnifyingGlass size={25} />
+          <FaDeleteLeft
+            onClick={() => setSearch("")}
+            className={search ? styles.visible : styles.hidden}
+          />
+          <FaMagnifyingGlass className={styles.glass} />
         </span>
 
         <div className={styles.filtersContainer}>
@@ -118,16 +124,25 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
                 <div className={styles.cardInfos}>
                   <p>{book.title}</p>
                   <div className={styles.bottomLine}>
-                    <span className={styles.readCount}>
-                      <FaEye size={20} /> {book.totalRead}/{book.totalVolumes}
+                    <span className={styles.readCount} title="Volumes lus">
+                      <FaEye className={styles.otherIcons} /> {book.totalRead}/
+                      {book.totalVolumes}
                     </span>
 
                     <div className={styles.actions}>
-                      <button onClick={() => onUpdate(book)} type="button">
-                        <MdEdit size={25} />
+                      <button
+                        onClick={() => onUpdate(book)}
+                        type="button"
+                        title="Modifier"
+                      >
+                        <MdEdit className={styles.editIcon} />
                       </button>
-                      <button onClick={() => onDelete(book)} type="button">
-                        <FaTrashCan size={20} />
+                      <button
+                        onClick={() => onDelete(book)}
+                        type="button"
+                        title="Supprimer"
+                      >
+                        <FaTrashCan className={styles.otherIcons} />
                       </button>
                     </div>
                   </div>

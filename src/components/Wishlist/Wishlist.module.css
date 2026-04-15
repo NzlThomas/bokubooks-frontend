@@ -16,7 +16,7 @@
 }
 
 .searchContainer input {
-  width: 13rem;
+  width: 11rem;
   text-align: left;
   font-size: 20px;
   border: none;
@@ -75,7 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   height: 75vh;
   width: 95%;
   overflow-y: scroll;
@@ -88,10 +88,9 @@
   color: white;
   background-color: var(--nav-background);
   border: solid 2px var(--secondary);
-  border-radius: 8px;
-  width: 90%;
-  min-height: 100px;
-  padding: 2rem;
+  border-radius: 5px;
+  width: 85%;
+  min-height: 90px;
 }
 
 .bookContainer p {
@@ -138,4 +137,126 @@
 .seeMore:hover {
   background-color: rgb(252, 252, 252);
   color: var(--secondary);
+}
+
+.wishInfos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.addedDate {
+  font-size: 13px;
+  font-style: italic;
+  color: rgb(165, 165, 165);
+}
+
+.deleteArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid var(--secondary);
+  align-self: stretch;
+  width: 100px;
+}
+
+.deleteArea:hover {
+  background-color: var(--not-read);
+  transition: all 0.1s ease;
+}
+
+.deleteArea:hover svg {
+  color: white;
+  transition: all 0.1s ease;
+}
+.hidden {
+  opacity: 0;
+}
+
+.hidden,
+.visible {
+  font-size: 25px;
+}
+
+.glassIcon {
+  font-size: 25px;
+}
+
+@media (min-width: 1200px) {
+  .glassIcon {
+    font-size: 30px;
+  }
+
+  .hidden,
+  .visible {
+    font-size: 30px;
+  }
+
+  .visible:hover {
+    cursor: pointer;
+  }
+
+  .cardsContainer {
+    height: 76vh;
+  }
+
+  .cardsContainer::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  .cardsContainer::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .cardsContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #d1d1d1;
+  }
+
+  .searchContainer {
+    justify-content: center;
+  }
+
+  .inputIconContainer {
+    width: 30rem;
+    padding: 1.75rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  .inputIconContainer input {
+    font-size: 20px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .bookContainer {
+    width: 35%;
+    min-height: 120px;
+  }
+
+  .bookContainer p {
+    font-size: 22px;
+  }
+
+  .addButton:hover,
+  .addButton:hover svg {
+    color: white;
+    transition: color 0.1s ease;
+  }
+
+  .addedDate {
+    font-size: 15px;
+  }
+
+  .seeMore {
+    font-size: 22px;
+    padding: 0.5rem 2rem;
+  }
+
+  .noBooks {
+    font-size: 20px;
+  }
 }

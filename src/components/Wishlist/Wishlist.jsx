@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import WishlistAddModal from "../WishlistAddModal/WishlistAddModal";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaTrashCan, FaDeleteLeft } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../api/api";
 import styles from "./Wishlist.module.css";
@@ -98,18 +98,26 @@ function Wishlist() {
     }
   }
 
+  function formatedDate(date) {
+    return new Date(date).toLocaleDateString("fr-FR");
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
         <span className={styles.inputIconContainer}>
           <input
-            type="search"
+            type="text"
             onChange={(e) => setSearch(e.target.value)}
             name="search"
-            placeholder="Rechercher un livre..."
+            placeholder="Rechercher un livre"
+            value={search}
           />
-
-          <FaMagnifyingGlass size={25} />
+          <FaDeleteLeft
+            onClick={() => setSearch("")}
+            className={search ? styles.visible : styles.hidden}
+          />
+          <FaMagnifyingGlass className={styles.glassIcon} />
         </span>
 
         <button onClick={() => setAddModal(true)} className={styles.addButton}>
@@ -146,10 +154,21 @@ function Wishlist() {
           ) : (
             visibleBooks.map((book) => (
               <div key={book.id} className={styles.bookContainer}>
-                <p>{book.title}</p>
-                <button onClick={() => handleDelete(book)}>
-                  <FaTrashCan size={25} />
-                </button>
+                <div className={styles.wishInfos}>
+                  <p>{book.title}</p>
+                  <span className={styles.addedDate}>
+                    Ajouté le {formatedDate(book.addedAt)}
+                  </span>
+                </div>
+
+                <div className={styles.deleteArea}>
+                  <button
+                    onClick={() => handleDelete(book)}
+                    className={styles.trashIcon}
+                  >
+                    <FaTrashCan size={25} />
+                  </button>
+                </div>
               </div>
             ))
           )}

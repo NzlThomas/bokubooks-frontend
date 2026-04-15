@@ -29,11 +29,8 @@ function DeleteModal({ title, onConfirm, onCancel, message }) {
       <div className={styles.deleteContainer} ref={modalRef}>
         <div className={styles.textContainer}>
           <p>
-            Supprimer{" "}
-            <span>
-              {title} {message}
-            </span>
-            ?
+            Supprimer <span className={styles.bookToDelete}>{title}</span>
+            <span> {message}</span>?
           </p>
         </div>
 

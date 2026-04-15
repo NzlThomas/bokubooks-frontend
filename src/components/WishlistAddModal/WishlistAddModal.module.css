@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: var(--secondary);
+  color: white;
   font-size: 1.4rem;
   text-align: center;
   font-weight: 500;
@@ -71,4 +71,29 @@
 .addButton:hover {
   background-color: rgb(252, 252, 252);
   color: var(--secondary);
+}
+
+@media (min-width: 1200px) {
+  .closeButton:hover {
+    color: var(--secondary);
+    transition: color 0.1s ease;
+  }
+
+  .modalContainer {
+    padding: 2rem 2rem;
+    width: 500px;
+    text-align: center;
+  }
+
+  .topRow {
+    justify-content: center;
+  }
+
+  .topRow svg {
+    margin-left: 5rem;
+  }
+
+  .addButton {
+    font-size: 20px;
+  }
 }
