@@ -131,6 +131,24 @@
   border: none;
 }
 
+.maxBtn {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  font-size: 16px;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.maxBtn:hover {
+  background-color: white;
+  color: var(--secondary);
+}
+
 .saveButton {
   background-color: var(--secondary);
   color: white;
