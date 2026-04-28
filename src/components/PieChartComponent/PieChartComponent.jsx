@@ -4,7 +4,7 @@ import styles from "./PieChartComponent.module.css";
 const COLOR_BY_NAME = {
   Terminées: "#3ec23a",
   "En cours": "#006af5",
-  "Pas commencé": "#e02c2c",
+  "À lire": "#e02c2c",
 };
 
 const CustomPieSlice = (props) => {

@@ -55,7 +55,7 @@ function Statistics() {
   const data = [
     { name: "Terminées", value: finished },
     { name: "En cours", value: inProgress },
-    { name: "Pas commencé", value: notStarted },
+    { name: "À lire", value: notStarted },
   ];
 
   return (
