@@ -12,6 +12,7 @@ const AddCollection = lazy(
 );
 const Collection = lazy(() => import("./components/Collection/Collection"));
 const Dashboard = lazy(() => import("./components/Dashboard/Dashboard"));
+const Statistics = lazy(() => import("./components/Statistics/Statistics"));
 
 const routes = [
   {
@@ -41,6 +42,10 @@ const routes = [
       {
         path: "/add-collection",
         element: <AddCollection />,
+      },
+      {
+        path: "/statistics",
+        element: <Statistics />,
       },
       {
         path: "/dashboard",

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { FaHeart, FaUser, FaBookOpen } from "react-icons/fa6";
+import { IoIosStats } from "react-icons/io";
 import styles from "./Navbar.module.css";
 
 function Navbar() {
@@ -32,6 +33,15 @@ function Navbar() {
           <span className={styles.navLink}>
             <FaHeart size={30} />
             Envies
+          </span>
+        </NavLink>
+        <NavLink
+          to="/statistics"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          <span className={styles.navLink}>
+            <IoIosStats size={30} />
+            Stats.
           </span>
         </NavLink>
         <NavLink

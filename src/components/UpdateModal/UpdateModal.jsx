@@ -104,6 +104,13 @@ function UpdateModal({ book, onConfirm, onClose }) {
               +
             </button>
           </div>
+          <button
+            type="button"
+            onClick={() => setTotalRead(totalVolumes)}
+            className={styles.maxBtn}
+          >
+            Max
+          </button>
         </div>
         <button
           onClick={handleSubmit}
