@@ -35,3 +35,10 @@
     opacity: 0.5;
   }
 }
+
+@media (min-width: 1200px) {
+  .firstBlock,
+  .secondBlock {
+    width: 450px;
+  }
+}

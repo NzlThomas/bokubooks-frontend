@@ -24,3 +24,11 @@
     opacity: 0.5;
   }
 }
+
+@media (min-width: 1200px) {
+  .loadingBlock {
+    width: 860px;
+    height: 120px;
+    align-self: center;
+  }
+}
