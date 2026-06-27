@@ -169,11 +169,6 @@
   word-break: break-word;
 }
 
-.cardInfos p:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .otherIcons {
   font-size: 22px;
 }
@@ -256,6 +251,16 @@
 .hidden,
 .visible {
   font-size: 25px;
+}
+
+.bookNotes {
+  display: flex;
+  gap: 1rem;
+}
+
+.notesButton svg:hover {
+  color: white;
+  transition: all ease 0.2s;
 }
 
 @media (min-width: 1200px) {
