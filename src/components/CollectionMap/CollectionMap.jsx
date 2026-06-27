@@ -1,7 +1,12 @@
 import { useState } from "react";
 import styles from "./CollectionMap.module.css";
 import LoadingBlocks from "../LoadingBlocks/LoadingBlocks";
-import { FaMagnifyingGlass, FaTrashCan, FaDeleteLeft } from "react-icons/fa6";
+import {
+  FaMagnifyingGlass,
+  FaTrashCan,
+  FaDeleteLeft,
+  FaNoteSticky,
+} from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
@@ -122,12 +127,21 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
                 className={[getBookStatus(book), styles.bookCard].join(" ")}
               >
                 <div className={styles.cardInfos}>
-                  <p onClick={() => onOpen(book)}>{book.title}</p>
+                  <p>{book.title}</p>
                   <div className={styles.bottomLine}>
-                    <span className={styles.readCount} title="Volumes lus">
-                      <FaEye className={styles.otherIcons} /> {book.totalRead}/
-                      {book.totalVolumes}
-                    </span>
+                    <div className={styles.bookNotes}>
+                      <span className={styles.readCount} title="Volumes lus">
+                        <FaEye className={styles.otherIcons} /> {book.totalRead}
+                        /{book.totalVolumes}
+                      </span>
+                      <button
+                        onClick={() => onOpen(book)}
+                        className={styles.notesButton}
+                        title="Notes"
+                      >
+                        <FaNoteSticky className={styles.otherIcons} />
+                      </button>
+                    </div>
 
                     <div className={styles.actions}>
                       <button

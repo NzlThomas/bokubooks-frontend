@@ -64,6 +64,7 @@ function NotesModal({ book, onClose, editNotes }) {
             <button
               onClick={() => showInformation()}
               className={styles.informationButton}
+              title="Information"
             >
               <IoMdInformationCircle size={30} />
             </button>
