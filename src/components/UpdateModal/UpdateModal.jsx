@@ -6,13 +6,14 @@ function UpdateModal({ book, onConfirm, onClose }) {
   const [title, setTitle] = useState(book.title);
   const [totalRead, setTotalRead] = useState(book.totalRead);
   const [totalVolumes, setTotalVolumes] = useState(book.totalVolumes);
+  const [notes, setNotes] = useState(book.notes);
 
   const modalRef = useRef(null);
 
   const handleSubmit = useCallback(() => {
-    onConfirm(book.id, title, totalRead, totalVolumes);
+    onConfirm(book.id, title, totalRead, totalVolumes, notes);
     onClose();
-  }, [book.id, title, totalRead, totalVolumes, onConfirm, onClose]);
+  }, [book.id, title, totalRead, totalVolumes, notes, onConfirm, onClose]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -112,6 +113,12 @@ function UpdateModal({ book, onConfirm, onClose }) {
             Max
           </button>
         </div>
+        <textarea
+          onChange={(e) => setNotes(e.target.value)}
+          value={notes ? notes : ""}
+          placeholder={`Ajouter une note à ${book.title}`}
+          className={styles.notesArea}
+        />
         <button
           onClick={handleSubmit}
           type="button"

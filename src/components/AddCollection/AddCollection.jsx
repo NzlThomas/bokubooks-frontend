@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function AddCollection() {
   const [title, setTitle] = useState("");
+  const [notes, setNotes] = useState("");
   const [totalVolumes, setTotalVolumes] = useState(0);
   const [totalRead, setTotalRead] = useState(0);
 
@@ -33,11 +34,13 @@ function AddCollection() {
         title,
         totalRead,
         totalVolumes,
+        notes,
       });
       toast.success(`${title} a bien été ajouté à votre collection!`);
       setTitle("");
       setTotalVolumes(0);
       setTotalRead(0);
+      setNotes("");
     } catch (error) {
       if (error.response?.status === 409) {
         toast.warn(`${title} est déjà dans votre collection!`);
@@ -117,6 +120,17 @@ function AddCollection() {
               </button>
             </div>
           </div>
+        </div>
+
+        <div className={styles.notesContainer}>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            placeholder={`Ajouter une note`}
+            className={styles.notesArea}
+            name="notes"
+            id="notes"
+          />
         </div>
 
         <button type="submit" className={styles.button}>

@@ -5,7 +5,7 @@ import { FaMagnifyingGlass, FaTrashCan, FaDeleteLeft } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
-function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
+function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
   const [search, setSearch] = useState("");
   const [visibleCount, setVisibleCount] = useState(20);
   const [statusFilter, setStatusFilter] = useState("all");
@@ -122,7 +122,7 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading }) {
                 className={[getBookStatus(book), styles.bookCard].join(" ")}
               >
                 <div className={styles.cardInfos}>
-                  <p>{book.title}</p>
+                  <p onClick={() => onOpen(book)}>{book.title}</p>
                   <div className={styles.bottomLine}>
                     <span className={styles.readCount} title="Volumes lus">
                       <FaEye className={styles.otherIcons} /> {book.totalRead}/

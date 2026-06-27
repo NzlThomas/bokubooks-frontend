@@ -4,11 +4,13 @@ import DeleteModal from "../DeleteModal/DeleteModal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import CollectionMap from "../CollectionMap/CollectionMap";
 import { ToastContainer, toast } from "react-toastify";
+import NotesModal from "../NotesModal/NotesModal";
 
 function Collection() {
   const [collection, setCollection] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
+  const [notesModal, setNotesModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +28,11 @@ function Collection() {
     collection();
   }, []);
 
+  async function handleEditNotes() {
+    setNotesModal(false);
+    setUpdateModal(true);
+  }
+
   async function handleDelete(book) {
     setSelectedBook(book);
     setDeleteModal(true);
@@ -34,6 +41,11 @@ function Collection() {
   async function handleUpdate(book) {
     setSelectedBook(book);
     setUpdateModal(true);
+  }
+
+  async function handleViewNote(book) {
+    setSelectedBook(book);
+    setNotesModal(true);
   }
 
   async function confirmDelete() {
@@ -54,7 +66,7 @@ function Collection() {
     }
   }
 
-  async function confirmUpdate(id, title, totalRead, totalVolumes) {
+  async function confirmUpdate(id, title, totalRead, totalVolumes, notes) {
     try {
       if (title.trim().length === 0) {
         toast.error("Titre obligatoire");
@@ -80,6 +92,7 @@ function Collection() {
         title,
         totalRead,
         totalVolumes,
+        notes,
       });
       setCollection((prev) =>
         prev.map((book) => (book.id === id ? res.data.updatedBook : book)),
@@ -97,6 +110,7 @@ function Collection() {
         collection={collection}
         onDelete={handleDelete}
         onUpdate={handleUpdate}
+        onOpen={handleViewNote}
         isLoading={isLoading}
       />
 
@@ -120,6 +134,17 @@ function Collection() {
           }}
         />
       )}
+
+      {notesModal && selectedBook && (
+        <NotesModal
+          book={selectedBook}
+          onClose={() => {
+            (setNotesModal(false), setSelectedBook(null));
+          }}
+          editNotes={handleEditNotes}
+        />
+      )}
+
       <ToastContainer
         position="top-right"
         autoClose={2500}

@@ -21,7 +21,7 @@
   width: 90%;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 500px;
 }
 
 .updateContainer input {
@@ -149,6 +149,12 @@
   color: var(--secondary);
 }
 
+.notesArea {
+  height: 100%;
+  resize: none;
+  padding: 0.5rem;
+}
+
 .saveButton {
   background-color: var(--secondary);
   color: white;
@@ -173,7 +179,7 @@
   .updateContainer {
     padding: 1rem 1rem;
     width: 500px;
-    height: 500px;
+    height: 600px;
   }
 
   .titleContainer,
