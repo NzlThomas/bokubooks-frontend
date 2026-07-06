@@ -9,7 +9,7 @@ function Navbar() {
     <div className={styles.desktopContainer}>
       <div className={styles.navContainer}>
         <NavLink
-          to="/add-collection"
+          to="add-collection"
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
@@ -18,7 +18,8 @@ function Navbar() {
           </span>
         </NavLink>
         <NavLink
-          to="/"
+          to="/app"
+          end
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
@@ -27,7 +28,7 @@ function Navbar() {
           </span>
         </NavLink>
         <NavLink
-          to="/wishlist"
+          to="wishlist"
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
@@ -36,7 +37,7 @@ function Navbar() {
           </span>
         </NavLink>
         <NavLink
-          to="/statistics"
+          to="statistics"
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
@@ -45,7 +46,7 @@ function Navbar() {
           </span>
         </NavLink>
         <NavLink
-          to="/dashboard"
+          to="dashboard"
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
