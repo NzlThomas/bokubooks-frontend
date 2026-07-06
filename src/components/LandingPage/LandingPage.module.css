@@ -1,0 +1,258 @@
+.mainContainer {
+  color: white;
+  background-color: rgb(18, 18, 18);
+  min-height: 100vh;
+}
+
+.mainContainer a {
+  color: white;
+  text-decoration: none;
+}
+
+.mainContainer h1 {
+  font-size: 35px;
+  text-align: center;
+  padding: 0rem 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.mainContainer h1 span {
+  display: block;
+}
+
+.subtitle {
+  font-size: 19px;
+  margin-bottom: 4rem;
+  width: 90%;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 5rem;
+  padding: 1rem;
+}
+
+.logo {
+  width: 2.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.line {
+  border: none;
+  height: 1px;
+  background-color: var(--secondary);
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.registerBtn {
+  padding: 0.5rem 0.5rem;
+  align-self: center;
+  background: var(--nav-background);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  border: solid 2px var(--secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.registerBtn:hover {
+  background-color: white;
+  color: var(--secondary);
+}
+
+.registerBtn:hover a {
+  color: var(--secondary);
+}
+
+.loginBtn {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  font-size: 17px;
+  font-weight: 550;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.loginBtn:hover {
+  background-color: white;
+  color: var(--secondary);
+}
+
+.loginBtn:hover a {
+  color: var(--secondary);
+}
+
+.showcase h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.sectionContainer h3,
+.sectionContainer h4,
+.sectionContainer h5 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  width: 90%;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7rem;
+}
+
+.sectionContainer img {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.showcaseLine {
+  border: none;
+  height: 1px;
+  background-color: rgb(51, 51, 51);
+  width: 100%;
+}
+
+.collection,
+.wishlist,
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutMe h6 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.aboutMe {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.aboutMe p {
+  font-size: 17px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgb(24, 24, 24);
+  padding: 0.5rem;
+  border-top: 1px solid var(--secondary);
+}
+
+.reactLogo {
+  width: 2rem;
+}
+
+.viteLogo {
+  width: 2.5rem;
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    margin-bottom: 15rem;
+  }
+
+  .mainContainer h1 {
+    font-size: 45px;
+  }
+
+  .subtitle {
+    margin-top: 0.5rem;
+    font-size: 25px;
+    margin-bottom: 4rem;
+  }
+
+  .registerBtn {
+    font-size: 21px;
+    padding: 0.6rem 1.1rem;
+  }
+
+  .loginBtn {
+    font-size: 22px;
+    padding: 0.6rem 1.1rem;
+  }
+
+  .logo {
+    width: 4rem;
+  }
+
+  .showcase h2 {
+    font-size: 35px;
+  }
+
+  .aboutMe h6 {
+    font-size: 35px;
+    margin-bottom: 3rem;
+  }
+
+  .sectionContainer h3,
+  .sectionContainer h4,
+  .sectionContainer h5 {
+    font-size: 25px;
+  }
+
+  .aboutMe {
+    margin-bottom: 5rem;
+  }
+
+  .aboutMe p {
+    width: 45%;
+    font-size: 18px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    padding: 1.5rem;
+  }
+
+  .reactLogo {
+    width: 2.5rem;
+  }
+
+  .viteLogo {
+    width: 3rem;
+  }
+}
