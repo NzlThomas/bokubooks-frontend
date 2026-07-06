@@ -17,7 +17,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/app");
     }
   }, [user, navigate]);
 

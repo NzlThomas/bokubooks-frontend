@@ -6,6 +6,17 @@
   min-height: 100vh;
 }
 
+.header {
+  margin-bottom: 5rem;
+  padding: 1rem;
+}
+
+.logo {
+  width: 2.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
 .loginContainer {
   background-color: var(--nav-background);
   color: white;
@@ -16,8 +27,12 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 90%;
+  width: 85%;
   height: 25rem;
+}
+
+.loginContainer h1 {
+  font-size: 29px;
 }
 
 .formContainer {

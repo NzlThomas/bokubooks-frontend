@@ -2,6 +2,7 @@ import { lazy } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NavLayout from "./components/Outlet/Outlet";
 
+const LandingPage = lazy(() => import("./components/LandingPage/LandingPage"));
 const LoginForm = lazy(() => import("./components/LoginForm/LoginForm"));
 const RegisterForm = lazy(
   () => import("./components/RegisterForm/RegisterForm"),
@@ -16,6 +17,10 @@ const Statistics = lazy(() => import("./components/Statistics/Statistics"));
 
 const routes = [
   {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
     path: "/register",
     element: <RegisterForm />,
   },
@@ -24,7 +29,7 @@ const routes = [
     element: <LoginForm />,
   },
   {
-    path: "/",
+    path: "/app",
     element: (
       <ProtectedRoute>
         <NavLayout />
@@ -32,23 +37,23 @@ const routes = [
     ),
     children: [
       {
-        path: "/wishlist",
-        element: <Wishlist />,
-      },
-      {
         index: true,
         element: <Collection />,
       },
       {
-        path: "/add-collection",
+        path: "wishlist",
+        element: <Wishlist />,
+      },
+      {
+        path: "add-collection",
         element: <AddCollection />,
       },
       {
-        path: "/statistics",
+        path: "statistics",
         element: <Statistics />,
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard />,
       },
     ],
