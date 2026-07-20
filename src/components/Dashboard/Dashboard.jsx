@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../api/api";
@@ -10,6 +10,10 @@ function Dashboard() {
 
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+
+  useEffect(() => {
+    document.title = "Bokubooks | Mon Compte";
+  }, []);
 
   async function handleChangeUsername(e) {
     e.preventDefault();
@@ -117,10 +121,11 @@ function Dashboard() {
   }
   return (
     <div className={styles.container}>
+      <h1 className={styles.srOnly}>Mon compte</h1>
       <div className={styles.usernameContainer}>
         <form onSubmit={handleChangeUsername}>
           <label htmlFor="username">Changer votre nom d'utilisateur</label>
-          <div>
+          <div className={styles.usernameInputFlex}>
             <input
               placeholder={user.username}
               onChange={(e) => setNewUsername(e.target.value)}

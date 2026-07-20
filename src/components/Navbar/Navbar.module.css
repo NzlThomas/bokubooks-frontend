@@ -15,6 +15,10 @@
   text-decoration: none;
   color: var(--non-focused);
   font-weight: 400;
+
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .active span {
@@ -26,6 +30,11 @@
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  font-size: 14px;
+}
+
+.navIcon {
+  font-size: 25px;
 }
 
 @media (min-width: 1200px) {
@@ -35,16 +44,25 @@
   }
   .navContainer {
     height: 80px;
-    width: 40%;
+    width: clamp(600px, 40%, 900px);
     padding: 2.5rem 0rem;
-    justify-content: center;
-    gap: 5rem;
+    justify-content: space-evenly;
+    align-items: center;
     border-left: 2.5px solid var(--secondary);
     border-right: 2.5px solid var(--secondary);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
   .navLink {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .navLink:hover {
+    color: white;
+    transition: color 0.2s ease;
+  }
+
+  .navIcon {
+    font-size: 30px;
   }
 }

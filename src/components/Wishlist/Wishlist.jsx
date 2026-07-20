@@ -29,6 +29,7 @@ function Wishlist() {
   const visibleBooks = filtered.slice(0, visibleCount);
 
   useEffect(() => {
+    document.title = "Bokubooks | Liste d'envies";
     const getWishlist = async () => {
       try {
         setIsLoading(true);
@@ -54,7 +55,7 @@ function Wishlist() {
 
       const newBook = res.data.newBook;
       setWishlist((prev) => [
-        { id: newBook.id, title: newBook.title },
+        { id: newBook.id, title: newBook.title, addedAt: newBook.addedAt },
         ...prev,
       ]);
       setAddModal(false);
@@ -104,12 +105,14 @@ function Wishlist() {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.srOnly}>Ma liste d'envies</h1>
       <div className={styles.searchContainer}>
         <span className={styles.inputIconContainer}>
           <input
             type="text"
             onChange={(e) => setSearch(e.target.value)}
             name="search"
+            aria-label="Rechercher un livre"
             placeholder="Rechercher un livre"
             value={search}
           />
@@ -120,8 +123,12 @@ function Wishlist() {
           <FaMagnifyingGlass className={styles.glassIcon} />
         </span>
 
-        <button onClick={() => setAddModal(true)} className={styles.addButton}>
-          <BsFillPlusCircleFill size={35} />{" "}
+        <button
+          onClick={() => setAddModal(true)}
+          className={styles.addButton}
+          title="Ajouter un livre"
+        >
+          <BsFillPlusCircleFill className={styles.addIcon} />{" "}
           <span className={styles.addSpan}>Ajouter</span>
         </button>
       </div>
@@ -155,17 +162,17 @@ function Wishlist() {
             visibleBooks.map((book) => (
               <div key={book.id} className={styles.bookContainer}>
                 <div className={styles.wishInfos}>
-                  <p>{book.title}</p>
+                  <h2 className={styles.cardBookTitle}>{book.title}</h2>
                   <span className={styles.addedDate}>
                     Ajouté le {formatedDate(book.addedAt)}
                   </span>
                 </div>
 
-                <div className={styles.deleteArea}>
-                  <button
-                    onClick={() => handleDelete(book)}
-                    className={styles.trashIcon}
-                  >
+                <div
+                  className={styles.deleteArea}
+                  onClick={() => handleDelete(book)}
+                >
+                  <button className={styles.trashIcon} title="Supprimer">
                     <FaTrashCan size={25} />
                   </button>
                 </div>

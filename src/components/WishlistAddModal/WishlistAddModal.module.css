@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -54,10 +54,15 @@
   cursor: pointer;
 }
 
+.closeButton:hover {
+  color: var(--secondary);
+  transition: color 0.2s ease;
+}
+
 .addButton {
-  background-color: var(--secondary);
+  background-color: var(--all-button);
   color: white;
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--all-button);
   font-size: 18px;
   font-weight: 550;
   padding: 0.5rem 1rem;
@@ -70,15 +75,10 @@
 
 .addButton:hover {
   background-color: rgb(252, 252, 252);
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 @media (min-width: 1200px) {
-  .closeButton:hover {
-    color: var(--secondary);
-    transition: color 0.1s ease;
-  }
-
   .modalContainer {
     padding: 2rem 2rem;
     width: 500px;
@@ -89,7 +89,7 @@
     justify-content: center;
   }
 
-  .topRow svg {
+  .closeButton {
     margin-left: 5rem;
   }
 

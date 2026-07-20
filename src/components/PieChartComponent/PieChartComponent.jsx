@@ -2,8 +2,8 @@ import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import styles from "./PieChartComponent.module.css";
 
 const COLOR_BY_NAME = {
-  Terminées: "#3ec23a",
-  "En cours": "#006af5",
+  Terminées: "#238636",
+  "En cours": "#7c36bd",
   "À lire": "#e02c2c",
 };
 
@@ -58,7 +58,7 @@ const PieChartComponent = ({ data }) => {
     <div>
       <ResponsiveContainer
         width="100%"
-        height={220}
+        height={isMobile ? 150 : 220}
         className={styles.respContainer}
       >
         <PieChart>
@@ -67,7 +67,7 @@ const PieChartComponent = ({ data }) => {
             cx="50%"
             cy="50%"
             labelLine={!isMobile}
-            outerRadius={isMobile ? 90 : 100}
+            outerRadius={isMobile ? 60 : 100}
             dataKey="value"
             nameKey="name"
             shape={<CustomPieSlice />}

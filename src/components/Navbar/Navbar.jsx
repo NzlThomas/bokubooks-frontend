@@ -13,7 +13,7 @@ function Navbar() {
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
-            <BsFillPlusCircleFill size={30} />
+            <BsFillPlusCircleFill className={styles.navIcon} />
             Ajouter
           </span>
         </NavLink>
@@ -23,7 +23,7 @@ function Navbar() {
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
-            <FaBookOpen size={30} />
+            <FaBookOpen className={styles.navIcon} />
             Collection
           </span>
         </NavLink>
@@ -32,7 +32,7 @@ function Navbar() {
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
-            <FaHeart size={30} />
+            <FaHeart className={styles.navIcon} />
             Envies
           </span>
         </NavLink>
@@ -41,7 +41,7 @@ function Navbar() {
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
-            <IoIosStats size={30} />
+            <IoIosStats className={styles.navIcon} />
             Stats.
           </span>
         </NavLink>
@@ -50,7 +50,7 @@ function Navbar() {
           className={({ isActive }) => (isActive ? styles.active : "")}
         >
           <span className={styles.navLink}>
-            <FaUser size={30} />
+            <FaUser className={styles.navIcon} />
             Compte
           </span>
         </NavLink>

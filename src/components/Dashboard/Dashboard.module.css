@@ -1,10 +1,22 @@
 .container {
   background-color: var(--background);
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .container input:focus {
@@ -17,7 +29,7 @@
   padding: 1rem;
   width: 90%;
   border-radius: 10px;
-  margin-top: 6rem;
+  margin-top: 2rem;
 }
 
 .usernameContainer form {
@@ -27,16 +39,18 @@
   gap: 1rem;
 }
 
-.usernameContainer div {
-  margin-top: 1rem;
-}
-
 .usernameContainer label,
 .passwordContainer p {
   color: white;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 500;
   align-self: center;
+}
+
+.usernameInputFlex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .passwordContainer {
@@ -49,12 +63,12 @@
 }
 
 .passwordContainer label {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .passwordContainer p {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .passwordContainer form {
@@ -69,11 +83,10 @@
   background-color: var(--nav-background);
   font-size: 17px;
   padding: 0.5rem 0.75rem;
-  width: 12rem;
+  width: 10rem;
   text-align: left;
   border: solid 2px var(--secondary);
   border-radius: 8px;
-  margin-right: 2rem;
 }
 
 .container input::placeholder {
@@ -82,9 +95,9 @@
 }
 
 .formButton {
-  background-color: var(--secondary);
+  background-color: var(--all-button);
   color: white;
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--all-button);
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -94,7 +107,7 @@
 
 .formButton:hover {
   background-color: rgb(252, 252, 252);
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .logoutBtn {
@@ -107,6 +120,7 @@
   border-radius: 5px;
   transition: background-color 0.2s ease;
   cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 .logoutBtn:hover {
@@ -115,8 +129,18 @@
 }
 
 @media (min-width: 1200px) {
+  .container {
+    justify-content: center;
+  }
+
+  .usernameContainer label,
+  .passwordContainer p {
+    font-size: 22px;
+  }
+
   .usernameContainer {
-    width: 20%;
+    width: clamp(320px, 20%, 500px);
+    margin-top: 0;
   }
 
   .usernameContainer div {
@@ -124,7 +148,7 @@
   }
 
   .passwordContainer {
-    width: 20%;
+    width: clamp(320px, 20%, 500px);
   }
 
   .passwordContainer form {
@@ -133,6 +157,10 @@
 
   .passwordContainer input {
     margin: 0;
+  }
+
+  .passwordContainer label {
+    font-size: 18px;
   }
 
   .passwordContainer button {
@@ -145,7 +173,7 @@
   }
 
   .logoutBtn {
-    font-size: 22px;
+    font-size: 20px;
     padding: 0.7rem 1.7rem;
   }
 }

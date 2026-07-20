@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
+import FocusTrap from "focus-trap-react";
 import styles from "./UpdateModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -16,12 +17,6 @@ function UpdateModal({ book, onConfirm, onClose }) {
   }, [book.id, title, totalRead, totalVolumes, notes, onConfirm, onClose]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         onClose();
@@ -29,104 +24,123 @@ function UpdateModal({ book, onConfirm, onClose }) {
         handleSubmit();
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, handleSubmit]);
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.updateContainer} ref={modalRef}>
-        <div className={styles.titleContainer}>
-          <p>Modifier {book.title}</p>
-          <button onClick={onClose} className={styles.closeButton}>
-            <IoCloseOutline size={40} />
-          </button>
-        </div>
-        <div className={styles.editTitleContainer}>
-          <p className={styles.title}>Titre:</p>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className={styles.titleInput}
+      <FocusTrap>
+        <form className={styles.updateContainer} ref={modalRef}>
+          <div className={styles.titleContainer}>
+            <h2>Modifier {book.title}</h2>
+            <button
+              onClick={onClose}
+              className={styles.closeButton}
+              title="Fermer"
+            >
+              <IoCloseOutline size={40} />
+            </button>
+          </div>
+
+          <div className={styles.editTitleContainer}>
+            <label className={styles.title} htmlFor="title">
+              Titre:
+            </label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className={styles.titleInput}
+            />
+          </div>
+
+          <div className={styles.ownedContainer}>
+            <label className={styles.ownedTitle} htmlFor="totalVolumes">
+              Vols. possédés:
+            </label>
+            <div className={styles.ownedNumberInput}>
+              <button
+                onClick={() => setTotalVolumes((v) => Math.max(0, v - 1))}
+                type="button"
+              >
+                -
+              </button>
+              <input
+                name="totalVolumes"
+                id="totalVolumes"
+                type="number"
+                required
+                onChange={(e) => setTotalVolumes(Number(e.target.value))}
+                value={totalVolumes}
+                min={0}
+              />
+              <button
+                onClick={() => setTotalVolumes((v) => v + 1)}
+                type="button"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <div className={styles.readContainer}>
+            <label className={styles.readTitle} htmlFor="totalRead">
+              Vols. lus:
+            </label>
+            <div className={styles.ownedNumberInput}>
+              <button
+                onClick={() => setTotalRead((v) => Math.max(0, v - 1))}
+                type="button"
+              >
+                -
+              </button>
+              <input
+                name="totalRead"
+                id="totalRead"
+                type="number"
+                required
+                onChange={(e) => setTotalRead(Number(e.target.value))}
+                value={totalRead}
+                min={0}
+              />
+              <button onClick={() => setTotalRead((v) => v + 1)} type="button">
+                +
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={() => setTotalRead(totalVolumes)}
+              className={styles.maxBtn}
+            >
+              Max
+            </button>
+          </div>
+          <label htmlFor="note" className={styles.srOnly}>
+            Ajouter une note à {book.title}
+          </label>
+          <textarea
+            onChange={(e) => setNotes(e.target.value)}
+            value={notes ? notes : ""}
+            placeholder={`Ajouter une note à ${book.title}`}
+            className={styles.notesArea}
+            name="note"
+            id="note"
           />
-        </div>
-
-        <div className={styles.ownedContainer}>
-          <p className={styles.ownedTitle}>Volumes possédés:</p>
-          <div className={styles.ownedNumberInput}>
-            <button
-              onClick={() => setTotalVolumes((v) => Math.max(0, v - 1))}
-              type="button"
-            >
-              -
-            </button>
-            <input
-              name="totalVolumes"
-              id="totalVolumes"
-              type="number"
-              required
-              onChange={(e) => setTotalVolumes(Number(e.target.value))}
-              value={totalVolumes}
-              min={0}
-            />
-            <button onClick={() => setTotalVolumes((v) => v + 1)} type="button">
-              +
-            </button>
-          </div>
-        </div>
-
-        <div className={styles.readContainer}>
-          <p className={styles.readTitle}>Volumes lus:</p>
-          <div className={styles.ownedNumberInput}>
-            <button
-              onClick={() => setTotalRead((v) => Math.max(0, v - 1))}
-              type="button"
-            >
-              -
-            </button>
-            <input
-              name="totalRead"
-              id="totalRead"
-              type="number"
-              required
-              onChange={(e) => setTotalRead(Number(e.target.value))}
-              value={totalRead}
-              min={0}
-            />
-            <button onClick={() => setTotalRead((v) => v + 1)} type="button">
-              +
-            </button>
-          </div>
           <button
+            onClick={handleSubmit}
             type="button"
-            onClick={() => setTotalRead(totalVolumes)}
-            className={styles.maxBtn}
+            className={styles.saveButton}
           >
-            Max
+            Sauvegarder
           </button>
-        </div>
-        <textarea
-          onChange={(e) => setNotes(e.target.value)}
-          value={notes ? notes : ""}
-          placeholder={`Ajouter une note à ${book.title}`}
-          className={styles.notesArea}
-        />
-        <button
-          onClick={handleSubmit}
-          type="button"
-          className={styles.saveButton}
-        >
-          Sauvegarder
-        </button>
-      </div>
+        </form>
+      </FocusTrap>
     </div>
   );
 }

@@ -16,6 +16,8 @@ function LoginForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Bokubooks - Connexion";
+
     if (user) {
       navigate("/app");
     }
@@ -55,6 +57,13 @@ function LoginForm() {
 
   return (
     <div className={styles.pageContainer}>
+      <Link to="/" title="Accueil">
+        <img
+          src="/icons/icon.png"
+          className={styles.logo}
+          alt="Logo du site représenté par un livre"
+        />
+      </Link>
       <div className={styles.loginContainer}>
         <h1>Se connecter</h1>
         <form onSubmit={handleLoginSubmit} className={styles.formContainer}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../../api/api";
 import styles from "./AddCollection.module.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,10 @@ function AddCollection() {
   const [notes, setNotes] = useState("");
   const [totalVolumes, setTotalVolumes] = useState(0);
   const [totalRead, setTotalRead] = useState(0);
+
+  useEffect(() => {
+    document.title = "Bokubooks | Ajouter un livre";
+  }, []);
 
   async function handleAddBook(e) {
     e.preventDefault();
@@ -51,6 +55,7 @@ function AddCollection() {
   }
   return (
     <div className={styles.container}>
+      <h1 className={styles.srOnly}>Ajouter un livre à ma collection</h1>
       <form onSubmit={handleAddBook} className={styles.form}>
         <div className={styles.titleContainer}>
           <label htmlFor="title" className={styles.title}>
@@ -123,6 +128,7 @@ function AddCollection() {
         </div>
 
         <div className={styles.notesContainer}>
+          <label htmlFor="notes">Note:</label>
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
