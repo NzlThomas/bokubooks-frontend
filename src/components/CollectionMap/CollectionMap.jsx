@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CollectionMap.module.css";
 import LoadingBlocks from "../LoadingBlocks/LoadingBlocks";
 import {
@@ -14,6 +14,10 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
   const [search, setSearch] = useState("");
   const [visibleCount, setVisibleCount] = useState(20);
   const [statusFilter, setStatusFilter] = useState("all");
+
+  useEffect(() => {
+    document.title = "Bokubooks | Collection";
+  }, []);
 
   function getBookStatus(book) {
     if (book.totalRead === 0) {
@@ -50,9 +54,11 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
 
   return (
     <div className={styles.collectionFlexContainer}>
+      <h1 className={styles.srOnly}>Ma Collection</h1>
       <div className={styles.searchContainer}>
         <span className={styles.inputIconContainer}>
           <input
+            aria-label="Rechercher un livre"
             placeholder="Rechercher un livre"
             onChange={(e) => {
               (setSearch(e.target.value), setVisibleCount(20));
@@ -127,13 +133,16 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
                 className={[getBookStatus(book), styles.bookCard].join(" ")}
               >
                 <div className={styles.cardInfos}>
-                  <p>{book.title}</p>
+                  <h2 className={styles.cardBookTitle}>{book.title}</h2>
                   <div className={styles.bottomLine}>
                     <div className={styles.bookNotes}>
                       <span className={styles.readCount} title="Volumes lus">
                         <FaEye className={styles.otherIcons} /> {book.totalRead}
                         /{book.totalVolumes}
                       </span>
+                    </div>
+
+                    <div className={styles.actions}>
                       <button
                         onClick={() => onOpen(book)}
                         className={styles.notesButton}
@@ -141,9 +150,6 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
                       >
                         <FaNoteSticky className={styles.otherIcons} />
                       </button>
-                    </div>
-
-                    <div className={styles.actions}>
                       <button
                         onClick={() => onUpdate(book)}
                         type="button"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,6 +11,10 @@ function RegisterForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Bokubooks - Créer un compte";
+  }, []);
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
@@ -61,6 +65,13 @@ function RegisterForm() {
 
   return (
     <div className={styles.pageContainer}>
+      <Link to="/" title="Accueil">
+        <img
+          src="/icons/icon.png"
+          className={styles.logo}
+          alt="Logo du site représenté par un livre"
+        />
+      </Link>
       <div className={styles.registerContainer}>
         <h1>Créer un compte:</h1>
         <form onSubmit={handleRegisterSubmit} className={styles.formContainer}>

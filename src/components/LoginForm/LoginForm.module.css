@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  justify-content: space-evenly;
+  min-height: 100dvh;
+  gap: 1rem;
 }
 
 .header {
@@ -12,9 +13,8 @@
 }
 
 .logo {
-  width: 2.5rem;
-  display: block;
-  margin: 0 auto;
+  width: 3rem;
+  cursor: pointer;
 }
 
 .loginContainer {
@@ -32,7 +32,7 @@
 }
 
 .loginContainer h1 {
-  font-size: 29px;
+  font-size: 26px;
 }
 
 .formContainer {
@@ -91,9 +91,9 @@
 }
 
 .loginBtn {
-  background-color: var(--secondary);
+  background-color: var(--all-button);
   color: white;
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--all-button);
   font-size: 1.2rem;
   font-weight: 550;
   padding: 0.5rem 1rem;
@@ -106,7 +106,7 @@
 
 .loginBtn:hover {
   background-color: white;
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .loginContainer a {
@@ -122,6 +122,10 @@
   .loginContainer {
     width: 425px;
     height: 550px;
+  }
+
+  .logo {
+    width: 5rem;
   }
 
   .usernameInput,

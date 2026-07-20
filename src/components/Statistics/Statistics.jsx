@@ -10,6 +10,8 @@ function Statistics() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    document.title = "Bokubooks | Statistiques";
+
     const stats = async () => {
       try {
         setIsLoading(true);
@@ -64,8 +66,9 @@ function Statistics() {
         <LoadingStats />
       ) : (
         <div>
+          <h1 className={styles.srOnly}>Mes statistiques</h1>
           <div className={styles.statSum}>
-            <h1 className={styles.statTitle}>Ma collection</h1>
+            <h2 className={styles.statTitle}>Ma collection</h2>
             <p>
               <span>Séries possédées:</span> {stats.totalSeries}
             </p>
@@ -78,8 +81,15 @@ function Statistics() {
           </div>
 
           <div className={styles.pieContainer}>
-            <h2 className={styles.pieTitle}>Stats de lecture</h2>
-            <PieChartComponent data={data} />
+            <h3 className={styles.pieTitle}>Stats de lecture</h3>
+            {collection.length === 0 ? (
+              <p className={styles.noStats}>
+                Ajoutez des livres à votre collection pour voir vos statistiques
+                de lecture.
+              </p>
+            ) : (
+              <PieChartComponent data={data} />
+            )}
           </div>
         </div>
       )}

@@ -9,6 +9,8 @@ function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Bokubooks - Gérez votre collection de livres";
+
     if (user) {
       navigate("/app");
     }
@@ -83,10 +85,10 @@ function LandingPage() {
           <h6>À propos</h6>
           <p>
             Salut, moi c'est Thomas 👋🏻 ! Développeur Web Fullstack depuis 2024
-            et grand fan de manga, j'allie mes deux passions avec ce site.
+            et amateur de manga, j'allie mes deux passions avec ce site.
           </p>
           <p>
-            L'objectif premier de Tracker est d'avoir un outil simple me
+            L'objectif premier de Bokubooks est d'avoir un outil simple me
             permettant de gérer ma collection, le second est de pouvoir le
             présenter sur mon portfolio. Donc pas de fonctionnalités bloquées
             derrière un paiement, toute l'application est gratuite !

@@ -1,7 +1,7 @@
 .mainContainer {
   color: white;
   background-color: rgb(18, 18, 18);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .mainContainer a {
@@ -10,7 +10,7 @@
 }
 
 .mainContainer h1 {
-  font-size: 35px;
+  font-size: 32px;
   text-align: center;
   padding: 0rem 2rem;
   margin-bottom: 0.5rem;
@@ -73,24 +73,24 @@
   color: white;
   font-size: 17px;
   font-weight: bold;
-  border: solid 2px var(--secondary);
+  border: solid 2px var(--all-button);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .registerBtn:hover {
   background-color: white;
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .registerBtn:hover a {
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .loginBtn {
-  background-color: var(--secondary);
+  background-color: var(--all-button);
   color: white;
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--all-button);
   font-size: 17px;
   font-weight: 550;
   padding: 0.5rem 1rem;
@@ -101,15 +101,15 @@
 
 .loginBtn:hover {
   background-color: white;
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .loginBtn:hover a {
-  color: var(--secondary);
+  color: var(--all-button);
 }
 
 .showcase h2 {
-  font-size: 30px;
+  font-size: 28px;
   text-align: center;
   margin-bottom: 5rem;
 }
@@ -138,6 +138,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  width: 75%;
 }
 
 .showcaseLine {
@@ -206,12 +207,12 @@
   }
 
   .registerBtn {
-    font-size: 21px;
+    font-size: 19px;
     padding: 0.6rem 1.1rem;
   }
 
   .loginBtn {
-    font-size: 22px;
+    font-size: 19px;
     padding: 0.6rem 1.1rem;
   }
 
@@ -221,6 +222,14 @@
 
   .showcase h2 {
     font-size: 35px;
+  }
+
+  .sectionContainer img {
+    width: 90%;
+  }
+
+  .collection {
+    width: 20%;
   }
 
   .aboutMe h6 {
