@@ -41,30 +41,18 @@ Bokubooks est une application full-stack permettant aux utilisateurs de gérer l
 
 ## Installation
 
-### Cloner les repositories
+### Cloner le projet
 
 ```bash
 git clone git@github.com:NzlThomas/tracker-frontend.git
-
-git clone git@github.com:NzlThomas/tracker-backend.git
 ```
 
 ### Installer les dépendances
 
-A la racine de chaque projet :
+A la racine du projet :
 
 ```bash
 npm i
-```
-
-### Configurer les variables d'environnement
-
-Créer un fichier `.env` à la racine du dossier **Backend** comme noté dans `.env.example`.
-
-### Lancer le serveur Express
-
-```bash
-node app.js
 ```
 
 ### Lancer le frontend
@@ -72,3 +60,7 @@ node app.js
 ```bash
 npm run dev
 ```
+
+## Initialisation du Backend
+
+[Référez vous au README de ce repository](https://github.com/NzlThomas/tracker-backend)
