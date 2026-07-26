@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import FocusTrap from "focus-trap-react";
+
 import styles from "./UpdateModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -8,13 +9,24 @@ function UpdateModal({ book, onConfirm, onClose }) {
   const [totalRead, setTotalRead] = useState(book.totalRead);
   const [totalVolumes, setTotalVolumes] = useState(book.totalVolumes);
   const [notes, setNotes] = useState(book.notes);
+  const [tag, setTag] = useState(book.readingStatus);
 
   const modalRef = useRef(null);
 
-  const handleSubmit = useCallback(() => {
-    onConfirm(book.id, title, totalRead, totalVolumes, notes);
-    onClose();
-  }, [book.id, title, totalRead, totalVolumes, notes, onConfirm, onClose]);
+  const handleSubmit = useCallback(async () => {
+    const success = await onConfirm(
+      book.id,
+      title,
+      totalRead,
+      totalVolumes,
+      notes,
+      tag,
+    );
+
+    if (success) {
+      onClose();
+    }
+  }, [book.id, title, totalRead, totalVolumes, notes, tag, onConfirm, onClose]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -121,6 +133,52 @@ function UpdateModal({ book, onConfirm, onClose }) {
               Max
             </button>
           </div>
+
+          <div className={styles.tagContainer}>
+            <label htmlFor="readingStatus" className={styles.title}>
+              Avancement:
+            </label>
+            <div className={styles.tagBtnContainer}>
+              <button
+                onClick={() => {
+                  setTag("TO_READ");
+                }}
+                type="button"
+                className={[
+                  styles.toReadBtn,
+                  tag === "TO_READ" ? styles.toReadActive : "",
+                ].join(" ")}
+              >
+                À lire
+              </button>
+              <button
+                onClick={() => {
+                  setTag("READING");
+                }}
+                type="button"
+                className={[
+                  styles.readingBtn,
+                  tag === "READING" ? styles.readingActive : "",
+                ].join(" ")}
+              >
+                En cours
+              </button>
+              <button
+                onClick={() => {
+                  setTag("READ");
+                }}
+                type="button"
+                className={styles.finishedBtn}
+                className={[
+                  styles.finishedBtn,
+                  tag === "READ" ? styles.finishedActive : "",
+                ].join(" ")}
+              >
+                Lu
+              </button>
+            </div>
+          </div>
+
           <label htmlFor="note" className={styles.srOnly}>
             Ajouter une note à {book.title}
           </label>

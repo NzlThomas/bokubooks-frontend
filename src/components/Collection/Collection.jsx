@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
+import { validateBook } from "../../utils/bookValidation";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import CollectionMap from "../CollectionMap/CollectionMap";
@@ -57,7 +58,7 @@ function Collection() {
         prevCollection.filter((book) => book.id !== selectedBook.id),
       );
       toast.success(
-        `${selectedBook.title} a bien été supprimé de votre liste de souhaits!`,
+        `${selectedBook.title} a bien été supprimé de votre collection!`,
       );
       setDeleteModal(false);
       setSelectedBook(null);
@@ -66,25 +67,13 @@ function Collection() {
     }
   }
 
-  async function confirmUpdate(id, title, totalRead, totalVolumes, notes) {
+  async function confirmUpdate(id, title, totalRead, totalVolumes, notes, tag) {
     try {
-      if (title.trim().length === 0) {
-        toast.error("Titre obligatoire");
-        return;
-      }
+      const error = validateBook(title, totalVolumes, totalRead, tag);
 
-      if (totalVolumes < 1) {
-        toast.error(
-          "Vous devez posséder au minimum 1 volume. Appuyez sur la poubelle si vous souhaitez supprimer cette entrée.",
-        );
-        return;
-      }
-
-      if (totalRead > totalVolumes) {
-        toast.error(
-          "Les volumes lus ne peuvent pas excéder les volumes possédés.",
-        );
-        return;
+      if (error) {
+        toast.error(error);
+        return false;
       }
 
       const res = await api.put("/collection", {
@@ -93,15 +82,16 @@ function Collection() {
         totalRead,
         totalVolumes,
         notes,
+        readingStatus: tag,
       });
       setCollection((prev) =>
         prev.map((book) => (book.id === id ? res.data.updatedBook : book)),
       );
-      setDeleteModal(false);
-      setSelectedBook(null);
       toast.success(`${title} a bien été mis à jour!`);
+      return true;
     } catch (error) {
       console.error(error);
+      return false;
     }
   }
   return (

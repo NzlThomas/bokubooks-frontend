@@ -153,11 +153,6 @@
   cursor: pointer;
 }
 
-.seeMore:hover {
-  background-color: rgb(252, 252, 252);
-  color: var(--all-button);
-}
-
 .wishInfos {
   display: flex;
   flex-direction: column;
@@ -212,6 +207,11 @@
 }
 
 @media (min-width: 1200px) {
+  .seeMore:hover {
+    background-color: rgb(252, 252, 252);
+    color: var(--all-button);
+  }
+
   .glassIcon {
     font-size: 30px;
   }

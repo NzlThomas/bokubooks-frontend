@@ -33,7 +33,7 @@
   width: 90%;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 550px;
 }
 
 .updateContainer input {
@@ -197,11 +197,85 @@
   color: var(--all-button);
 }
 
+.tagContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tagBtnContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tagContainer button {
+  border-radius: 5px;
+  padding: 0.3rem 0.8rem;
+  font-size: 18px;
+  font-weight: 550;
+}
+
+.toReadBtn {
+  background-color: white;
+  border: solid 2px var(--not-read);
+  color: var(--not-read);
+}
+
+.toReadActive {
+  background-color: var(--not-read);
+  color: white;
+}
+
+.readingBtn {
+  background-color: white;
+  border: solid 2px var(--reading);
+  color: var(--reading);
+}
+
+.readingActive {
+  background-color: var(--reading);
+  color: white;
+}
+
+.finishedBtn {
+  background-color: white;
+  border: solid 2px var(--read);
+  color: var(--read);
+}
+
+.finishedActive {
+  background-color: var(--read);
+  color: white;
+}
+
+.toReadBtn:hover {
+  transition: all 0.2s ease;
+  border: solid 2px white;
+}
+
+.readingBtn:hover {
+  transition: all 0.2s ease;
+  border: solid 2px white;
+}
+
+.finishedBtn:hover {
+  transition: all 0.2s ease;
+  border: solid 2px white;
+}
+
 @media (min-width: 1200px) {
   .updateContainer {
     padding: 1rem 1rem;
     width: 500px;
-    height: 600px;
+    height: 650px;
+  }
+
+  .tagBtnContainer button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 17px;
   }
 
   .titleContainer,
