@@ -253,11 +253,6 @@
   cursor: pointer;
 }
 
-.seeMore:hover {
-  background-color: rgb(252, 252, 252);
-  color: var(--all-button);
-}
-
 .noBooks {
   color: white;
   font-size: 18px;
@@ -300,6 +295,11 @@
 }
 
 @media (min-width: 1200px) {
+  .seeMore:hover {
+    background-color: rgb(252, 252, 252);
+    color: var(--all-button);
+  }
+
   .inputIconContainer {
     width: 30rem;
     padding: 1.75rem 1.5rem;

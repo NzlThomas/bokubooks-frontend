@@ -45,12 +45,12 @@ function Statistics() {
   for (let i = 0; i < collection.length; i++) {
     const book = collection[i];
 
-    if (book.totalRead === 0) {
-      notStarted++;
-    } else if (book.totalRead < book.totalVolumes) {
-      inProgress++;
-    } else {
+    if (book.readingStatus === "READ") {
       finished++;
+    } else if (book.readingStatus === "READING") {
+      inProgress++;
+    } else if (book.readingStatus === "TO_READ") {
+      notStarted++;
     }
   }
 

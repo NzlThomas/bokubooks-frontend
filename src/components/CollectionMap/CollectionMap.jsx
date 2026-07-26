@@ -20,22 +20,32 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
   }, []);
 
   function getBookStatus(book) {
-    if (book.totalRead === 0) {
+    if (book.readingStatus === "TO_READ") {
       return "notStarted";
-    } else if (book.totalRead < book.totalVolumes) {
+    } else if (book.readingStatus === "READING") {
       return "reading";
     } else {
       return "finished";
     }
   }
 
-  function getTag(book) {
-    if (book.totalRead === 0) {
+  function getTagClass(book) {
+    if (book.readingStatus === "TO_READ") {
       return styles.tagNotStarted;
-    } else if (book.totalRead < book.totalVolumes) {
+    } else if (book.readingStatus === "READING") {
       return styles.tagReading;
     } else {
       return styles.tagFinished;
+    }
+  }
+
+  function getTagText(book) {
+    if (book.readingStatus === "TO_READ") {
+      return "À lire";
+    } else if (book.readingStatus === "READING") {
+      return "En cours";
+    } else {
+      return "Lu";
     }
   }
 
@@ -168,13 +178,7 @@ function CollectionMap({ collection, onDelete, onUpdate, isLoading, onOpen }) {
                   </div>
                 </div>
                 <div className={styles.cardTag}>
-                  <p className={getTag(book)}>
-                    {book.totalRead === 0
-                      ? "À lire"
-                      : book.totalRead < book.totalVolumes
-                        ? "En cours"
-                        : "Lu"}
-                  </p>
+                  <p className={getTagClass(book)}>{getTagText(book)}</p>
                 </div>
               </div>
             ))

@@ -46,8 +46,8 @@ function NotesModal({ book, onClose, editNotes }) {
 
                   <div className={styles.infoBox}>
                     💡 Vous pouvez utiliser cette section pour noter les tomes
-                    manquants ou toute autre information utile concernant cette
-                    série.
+                    manquants, le nom de l'auteur ou toute autre information
+                    utile concernant cette série.
                   </div>
                 </>
               )}

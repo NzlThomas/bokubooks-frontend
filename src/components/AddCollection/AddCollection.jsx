@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../../api/api";
+import { validateBook } from "../../utils/bookValidation";
 import styles from "./AddCollection.module.css";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -8,6 +9,29 @@ function AddCollection() {
   const [notes, setNotes] = useState("");
   const [totalVolumes, setTotalVolumes] = useState(1);
   const [totalRead, setTotalRead] = useState(0);
+  const [tag, setTag] = useState(null);
+  const [hasManuallySelectedStatus, setHasManuallySelectedStatus] =
+    useState(false);
+
+  function getSuggestedStatus(totalVolumes, totalRead) {
+    if (!totalVolumes || totalVolumes === 0) {
+      return "TO_READ";
+    }
+
+    if (totalRead === 0) {
+      return "TO_READ";
+    }
+
+    if (totalRead >= totalVolumes) {
+      return "READ";
+    }
+
+    return "READING";
+  }
+
+  const displayedTag = hasManuallySelectedStatus
+    ? tag
+    : getSuggestedStatus(Number(totalVolumes), Number(totalRead));
 
   useEffect(() => {
     document.title = "Bokubooks | Ajouter un livre";
@@ -17,20 +41,10 @@ function AddCollection() {
     e.preventDefault();
 
     try {
-      if (title.trim().length === 0) {
-        toast.error("Titre obligatoire");
-        return;
-      }
+      const error = validateBook(title, totalVolumes, totalRead, tag);
 
-      if (totalVolumes < 1) {
-        toast.error("Vous devez posséder au minimum 1 volume.");
-        return;
-      }
-
-      if (totalRead > totalVolumes) {
-        toast.error(
-          "Les volumes lus ne peuvent pas excéder les volumes possédés.",
-        );
+      if (error) {
+        toast.error(error);
         return;
       }
 
@@ -39,11 +53,14 @@ function AddCollection() {
         totalRead,
         totalVolumes,
         notes,
+        readingStatus: displayedTag,
       });
       toast.success(`${title} a bien été ajouté à votre collection!`);
       setTitle("");
       setTotalVolumes(1);
       setTotalRead(0);
+      setTag(null);
+      setHasManuallySelectedStatus(false);
       setNotes("");
     } catch (error) {
       if (error.response?.status === 409) {
@@ -127,6 +144,54 @@ function AddCollection() {
           </div>
         </div>
 
+        <div className={styles.tagContainer}>
+          <label htmlFor="readingStatus" className={styles.title}>
+            Avancement:
+          </label>
+          <div className={styles.tagBtnContainer}>
+            <button
+              onClick={() => {
+                setTag("TO_READ");
+                setHasManuallySelectedStatus(true);
+              }}
+              type="button"
+              className={[
+                styles.toReadBtn,
+                displayedTag === "TO_READ" ? styles.toReadActive : "",
+              ].join(" ")}
+            >
+              À lire
+            </button>
+            <button
+              onClick={() => {
+                setTag("READING");
+                setHasManuallySelectedStatus(true);
+              }}
+              type="button"
+              className={[
+                styles.readingBtn,
+                displayedTag === "READING" ? styles.readingActive : "",
+              ].join(" ")}
+            >
+              En cours
+            </button>
+            <button
+              onClick={() => {
+                setTag("READ");
+                setHasManuallySelectedStatus(true);
+              }}
+              type="button"
+              className={styles.finishedBtn}
+              className={[
+                styles.finishedBtn,
+                displayedTag === "READ" ? styles.finishedActive : "",
+              ].join(" ")}
+            >
+              Lu
+            </button>
+          </div>
+        </div>
+
         <div className={styles.notesContainer}>
           <label htmlFor="notes">Note:</label>
           <textarea
@@ -145,7 +210,7 @@ function AddCollection() {
       </form>
       <ToastContainer
         position="top-right"
-        autoClose={2500}
+        autoClose={5000}
         closeOnClick
         pauseOnHover
         theme="colored"
