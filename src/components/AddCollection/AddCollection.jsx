@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 function AddCollection() {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
-  const [totalVolumes, setTotalVolumes] = useState(0);
+  const [totalVolumes, setTotalVolumes] = useState(1);
   const [totalRead, setTotalRead] = useState(0);
 
   useEffect(() => {
