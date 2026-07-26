@@ -42,7 +42,7 @@ function AddCollection() {
       });
       toast.success(`${title} a bien été ajouté à votre collection!`);
       setTitle("");
-      setTotalVolumes(0);
+      setTotalVolumes(1);
       setTotalRead(0);
       setNotes("");
     } catch (error) {
