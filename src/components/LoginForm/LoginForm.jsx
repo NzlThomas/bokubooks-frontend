@@ -10,6 +10,7 @@ function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
+  const [slowRequest, setSlowRequest] = useState(false);
 
   const { login, user } = useContext(AuthContext);
 
@@ -34,6 +35,12 @@ function LoginForm() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
+    setSlowRequest(false);
+
+    const timer = setTimeout(() => {
+      setSlowRequest(true);
+    }, 5000);
+
     try {
       const res = await api.post("/login", {
         username,
@@ -52,6 +59,8 @@ function LoginForm() {
         default:
           toast.error("Une erreur est survenue.");
       }
+    } finally {
+      clearTimeout(timer);
     }
   };
 
@@ -65,6 +74,14 @@ function LoginForm() {
         />
       </Link>
       <div className={styles.loginContainer}>
+        {slowRequest && (
+          <div className={styles.slowMessageContainer}>
+            <p className={styles.slowMessage}>
+              Connexion en cours, veuillez patienter.
+            </p>
+            <div className={styles.loader}></div>
+          </div>
+        )}
         <h1>Se connecter</h1>
         <form onSubmit={handleLoginSubmit} className={styles.formContainer}>
           <label htmlFor="username">Nom d'utilisateur:</label>
