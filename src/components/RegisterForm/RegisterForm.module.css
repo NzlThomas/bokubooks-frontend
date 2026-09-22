@@ -27,7 +27,38 @@
   justify-content: center;
   gap: 1rem;
   width: 85%;
-  height: 30rem;
+  height: 33rem;
+}
+
+.slowMessageContainer {
+  background-color: var(--read);
+  border-radius: 3px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slowMessage {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #ffffff 94%, #0000) top/5px 5px no-repeat,
+    conic-gradient(#0000 30%, #ffffff);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 5px), #000 0);
+  animation: l13 1s infinite linear;
+}
+
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
 .registerContainer h1 {
@@ -95,6 +126,14 @@
   .registerContainer {
     width: 425px;
     height: 550px;
+  }
+
+  .slowMessage {
+    font-size: 18px;
+  }
+
+  .loader {
+    width: 25px;
   }
 
   .logo {

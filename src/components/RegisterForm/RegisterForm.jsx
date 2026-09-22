@@ -9,6 +9,7 @@ function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [slowRequest, setSlowRequest] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +25,13 @@ function RegisterForm() {
       toast.error("Les mots de passe ne correspondent pas.");
       return;
     }
+
+    setSlowRequest(false);
+
+    const timer = setTimeout(() => {
+      setSlowRequest(true);
+    }, 5000);
+
     try {
       await api.post("/register", {
         username,
@@ -60,6 +68,8 @@ function RegisterForm() {
         default:
           toast.error("Une erreur est survenue.");
       }
+    } finally {
+      clearTimeout(timer);
     }
   };
 
@@ -73,6 +83,14 @@ function RegisterForm() {
         />
       </Link>
       <div className={styles.registerContainer}>
+        {slowRequest && (
+          <div className={styles.slowMessageContainer}>
+            <p className={styles.slowMessage}>
+              Création du compte, veuillez patienter.
+            </p>
+            <div className={styles.loader}></div>
+          </div>
+        )}
         <h1>Créer un compte:</h1>
         <form onSubmit={handleRegisterSubmit} className={styles.formContainer}>
           <label htmlFor="username">Nom d'utilisateur</label>
