@@ -17,6 +17,8 @@ Bokubooks est une application full-stack permettant aux utilisateurs de gérer l
 - Statistiques de sa collection
 - Changement du nom d'utilisateur et du mot de passe
 
+![Aperçu de l'application](./public/showcase_images/preview.png)
+
 ## Stack utilisée
 
 ### Frontend
