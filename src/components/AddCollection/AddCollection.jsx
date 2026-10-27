@@ -181,11 +181,12 @@ function AddCollection() {
                 setHasManuallySelectedStatus(true);
               }}
               type="button"
-              className={styles.finishedBtn}
               className={[
                 styles.finishedBtn,
                 displayedTag === "READ" ? styles.finishedActive : "",
-              ].join(" ")}
+              ]
+                .filter(Boolean)
+                .join(" ")}
             >
               Lu
             </button>

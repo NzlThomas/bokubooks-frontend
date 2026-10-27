@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import styles from "./DeleteModal.module.css";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 
 function DeleteModal({ title, onConfirm, onCancel, message }) {
   const modalRef = useRef(null);

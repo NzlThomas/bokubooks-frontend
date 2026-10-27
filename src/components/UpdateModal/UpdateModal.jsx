@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 
 import styles from "./UpdateModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
@@ -168,11 +168,12 @@ function UpdateModal({ book, onConfirm, onClose }) {
                   setTag("READ");
                 }}
                 type="button"
-                className={styles.finishedBtn}
                 className={[
                   styles.finishedBtn,
                   tag === "READ" ? styles.finishedActive : "",
-                ].join(" ")}
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
               >
                 Lu
               </button>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import styles from "./WishlistAddModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 
 function WishlistAddModal({ onAdd, onCancel }) {
   const [title, setTitle] = useState("");

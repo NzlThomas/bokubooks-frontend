@@ -1,8 +1,7 @@
 import { useRef, useEffect } from "react";
 import styles from "./NotesModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
-import { IoMdInformationCircle } from "react-icons/io";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 
 function NotesModal({ book, onClose, editNotes }) {
   const modalRef = useRef(null);
